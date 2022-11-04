@@ -14,7 +14,7 @@ project:
 #
 # This info will be automatically collected and used to make a datasheet for the chip.
 documentation: 
-  author:       "Matt Venn"      # Your name
+  author:       "Marcelo A. Pouso"      # Your name
   discord:      "mattvenn"      # Your discord handle
   title:        "7 segment seconds"      # Project title
   description:  "count up to 10, one second at a time"      # Short description of what your project does
