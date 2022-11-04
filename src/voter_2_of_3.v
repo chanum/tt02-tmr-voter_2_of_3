@@ -44,14 +44,14 @@ module voter_2_of_3 (
     end
   end
 
-  assign io_out[0] = voter_error_r;
+  assign io_out[1] = voter_error_r;
 
   // Voter 2 of 3
   assign nand1 = ~(a_r & b_r);
   assign nand2 = ~(b_r & c_r);
   assign nand3 = ~(a_r & c_r);
 
-  assign io_out[1] = ~(nand1 & nand2 & nand3);
+  assign io_out[0] = ~(nand1 & nand2 & nand3);
 
   // free io
   // io_in[5]

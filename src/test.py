@@ -17,39 +17,39 @@ async def test_voter(dut):
     dut.a_in.value = 1
     dut.b_in.value = 1
     dut.c_in.value = 1
-    await ClockCycles(dut.clk, 100)
+    await ClockCycles(dut.clk, 5)
     assert int(dut.v_out.value) == 1
     assert int(dut.v_error_out.value) == 0
 
-    # dut._log.info("check 2 - No error")
-    # dut.a_in.value = 0
-    # dut.b_in.value = 0
-    # dut.c_in.value = 0
-    # await ClockCycles(dut.clk, 100)
-    # assert int(dut.v_out.value) == 0
-    # assert int(dut.v_error_out.value) == 0
+    dut._log.info("check 2 - No error")
+    dut.a_in.value = 0
+    dut.b_in.value = 0
+    dut.c_in.value = 0
+    await ClockCycles(dut.clk, 100)
+    assert int(dut.v_out.value) == 0
+    assert int(dut.v_error_out.value) == 0
 
-    # dut._log.info("check 3 - error")
-    # dut.a_in.value = 1
-    # dut.b_in.value = 1
-    # dut.c_in.value = 0
-    # await ClockCycles(dut.clk, 100)
-    # assert int(dut.v_out.value) == 1
-    # assert int(dut.v_error_out.value) == 1
+    dut._log.info("check 3 - error")
+    dut.a_in.value = 1
+    dut.b_in.value = 1
+    dut.c_in.value = 0
+    await ClockCycles(dut.clk, 100)
+    assert int(dut.v_out.value) == 1
+    assert int(dut.v_error_out.value) == 1
 
-    # dut._log.info("check 4 - error")
-    # dut.a_in.value = 1
-    # dut.b_in.value = 0
-    # dut.c_in.value = 1
-    # await ClockCycles(dut.clk, 100)
-    # assert int(dut.v_out.value) == 1
-    # assert int(dut.v_error_out.value) == 1
+    dut._log.info("check 4 - error")
+    dut.a_in.value = 1
+    dut.b_in.value = 0
+    dut.c_in.value = 1
+    await ClockCycles(dut.clk, 100)
+    assert int(dut.v_out.value) == 1
+    assert int(dut.v_error_out.value) == 1
 
-    # dut._log.info("check 4 - error")
-    # dut.a_in.value = 0
-    # dut.b_in.value = 1
-    # dut.c_in.value = 1
-    # await ClockCycles(dut.clk, 100)
-    # assert int(dut.v_out.value) == 1
-    # assert int(dut.v_error_out.value) == 1
+    dut._log.info("check 4 - error")
+    dut.a_in.value = 0
+    dut.b_in.value = 1
+    dut.c_in.value = 1
+    await ClockCycles(dut.clk, 100)
+    assert int(dut.v_out.value) == 1
+    assert int(dut.v_error_out.value) == 1
 
