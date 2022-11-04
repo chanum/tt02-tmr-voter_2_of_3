@@ -2,11 +2,8 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge, FallingEdge, Timer, ClockCycles
 
-
-segments = [ 63, 6, 91, 79, 102, 109, 124, 7, 127, 103 ]
-
 @cocotb.test()
-async def test_7seg(dut):
+async def test_voter(dut):
     dut._log.info("start")
     clock = Clock(dut.clk, 10, units="us")
     cocotb.fork(clock.start())
@@ -16,8 +13,43 @@ async def test_7seg(dut):
     await ClockCycles(dut.clk, 10)
     dut.rst.value = 0
 
-    dut._log.info("check all segments")
-    for i in range(10):
-        dut._log.info("check segment {}".format(i))
-        await ClockCycles(dut.clk, 100)
-        assert int(dut.segments.value) == segments[i]
+    dut._log.info("check 1 - No error")
+    dut.a_in.value = 1
+    dut.b_in.value = 1
+    dut.c_in.value = 1
+    await ClockCycles(dut.clk, 100)
+    assert int(dut.v_out.value) == 1
+    assert int(dut.v_error_out.value) == 0
+
+    # dut._log.info("check 2 - No error")
+    # dut.a_in.value = 0
+    # dut.b_in.value = 0
+    # dut.c_in.value = 0
+    # await ClockCycles(dut.clk, 100)
+    # assert int(dut.v_out.value) == 0
+    # assert int(dut.v_error_out.value) == 0
+
+    # dut._log.info("check 3 - error")
+    # dut.a_in.value = 1
+    # dut.b_in.value = 1
+    # dut.c_in.value = 0
+    # await ClockCycles(dut.clk, 100)
+    # assert int(dut.v_out.value) == 1
+    # assert int(dut.v_error_out.value) == 1
+
+    # dut._log.info("check 4 - error")
+    # dut.a_in.value = 1
+    # dut.b_in.value = 0
+    # dut.c_in.value = 1
+    # await ClockCycles(dut.clk, 100)
+    # assert int(dut.v_out.value) == 1
+    # assert int(dut.v_error_out.value) == 1
+
+    # dut._log.info("check 4 - error")
+    # dut.a_in.value = 0
+    # dut.b_in.value = 1
+    # dut.c_in.value = 1
+    # await ClockCycles(dut.clk, 100)
+    # assert int(dut.v_out.value) == 1
+    # assert int(dut.v_error_out.value) == 1
+
